@@ -23,51 +23,51 @@
   <!--Paths to files and folders Launcher will work with. They are commonly all !CASE SENSITIVE!-->
   <Paths>
     <!--FilelistPath: Path to text filelist.-->
-    <FilelistPath>http://www.example.com/files/filelist.conf</FilelistPath>
+    <FilelistPath>http://69.146.207.32:8741/launcher/filelist.conf</FilelistPath>
 
     <!--VersionPath: Path to text file which contains your Lancher's current version (version is a double value with . as separator!-->
-    <VersionPath>http://www.example.com/files/launcherversion.conf</VersionPath>
+    <VersionPath>http://69.146.207.32:8741/launcher/launcherversion.conf</VersionPath>
 
     <!--LauncherPath: Path to a zip file with Launcher files - used if Launcher finds itself outdated.-->
-    <LauncherPath>http://www.exeample.com/files/Launcher.zip</LauncherPath>
+    <LauncherPath>http://69.146.207.32:8741/launcher/Launcher.zip</LauncherPath>
 
     <!--FilesRootPath: Path to folder with files. Paths in filelist are relative to this path.-->
-    <FilesRootPath>http://www.example.com/files/</FilesRootPath>
+    <FilesRootPath>http://69.146.207.32:8741/launcher/</FilesRootPath>
 
     <!--ChangelogPath: !HTTP! path to changelog XML file.-->
-    <ChangelogPath>http://www.example.com/files/changelog.xml</ChangelogPath>
+    <ChangelogPath>http://69.146.207.32:8741/launcher/changelog.xml</ChangelogPath>
 
     <!--ChangelogFTPPath: !Full! !FTP! path to folder in which changelog is. Notice that //www/ part. You may want to use an IP instead of a domain name.-->
-    <ChangelogFTPPath>ftp://ftp.example.com//www/files/</ChangelogFTPPath>
+    <ChangelogFTPPath>ftp://http://69.146.207.32:8741//www/html/launcher/</ChangelogFTPPath>
 
     <!--Webpage: URL which is to be opened when user clicks on Project webpage button.-->
-    <Webpage>http://www.example.com</Webpage>
+    <Webpage>https://discord.gg/yQbQyDc</Webpage>
 
     <!--Registration: URL which is to be opened when user clicks on Registration button.-->
-    <Registration>http://reg.example.com</Registration>
+    <Registration>https://discord.gg/yQbQyDc</Registration>
 
     <!--Instructions: URL which is to be opened when user clicks on Launcher manual button.-->
-    <Instructions>http://www.example.com/launchermanual/</Instructions>
+    <Instructions>https://discord.gg/yQbQyDc</Instructions>
 
     <!--HelloImage: URL to image which is to be displayed in Main window (latest news image). Clicking on it opens a changelog browser.-->
-    <HelloImage>http://www.example.com/files/hello.jpg</HelloImage>
+    <HelloImage>http://69.146.207.32:8741/launcher/hello.jpg</HelloImage>
   </Paths>
 
   <!--Visual settings for Main Window.-->
   <MainWindow>
     <!--WindowName: Name of main window. Change this to match your project's name.-->
-    <WindowName>Amaroth's Launcher 1.1</WindowName>
+    <WindowName>Ember Re-Launcher 1.0</WindowName>
 
-    <OutputBox>Text output:</OutputBox>
+    <OutputBox>Output:</OutputBox>
     <OptionalBox>Optional files:</OptionalBox>
     <CheckForUpdatesButton>Check for updates</CheckForUpdatesButton>
     <UpdateButton>Update</UpdateButton>
-    <WebpageButton>Project webpage</WebpageButton>
-    <RegistrationButton>Registration</RegistrationButton>
-    <LauncherInstructionsButton>Launcher manual</LauncherInstructionsButton>
-    <DeleteBackupsButton>Delete .ext_ backups</DeleteBackupsButton>
-    <ChangelogEditorButton>Changelog editor</ChangelogEditorButton>
-    <ChangelogBrowserButton>Changelog browser</ChangelogBrowserButton>
+    <WebpageButton>Website</WebpageButton>
+    <RegistrationButton>[Discord] Registration</RegistrationButton>
+    <LauncherInstructionsButton>[Discord] Help</LauncherInstructionsButton>
+    <DeleteBackupsButton>Delete "._" backup files</DeleteBackupsButton>
+    <ChangelogEditorButton>Changelog editor</ChangelogEditorButton> <!-- void -->
+    <ChangelogBrowserButton>Changelog browser</ChangelogBrowserButton> <!--void-->
     <LaunchButton>Launch</LaunchButton>
     <ProgressText>Downloading: </ProgressText>
     <ProgressSeparator> / </ProgressSeparator>
@@ -128,9 +128,12 @@
   <!--Various messages which can be output by Launcher.-->
   <Messages>
     <!--HelloMessage: Please, leave this here. If you want to add anything, add it behind original message.-->
-    <HelloMessage>This Launcher was coded by Amaroth from www.model-changing.net.</HelloMessage>
+    <!-- <HelloMessage>This Launcher was coded by Amaroth from www.model-changing.net.</HelloMessage> -->
+	<HelloMessage>Welcome to Ember!&#xA;Launcher by Amaroth - https://github.com/Amaroth/WoWMod-Launcher</HelloMessage>
+	
 
-    <XmlNotOpened>Default settings are being used, because LauncherConfig.xml could not be loaded. Launcher can't continue. Get a new config file!</XmlNotOpened>
+    <!-- <XmlNotOpened>Default settings are being used, because LauncherConfig.xml could not be loaded. Launcher can't continue. Get a new config file!</XmlNotOpened> -->
+	<XmlNotOpened>LauncherConfig.xml not found. Cannot continue.</XmlNotOpened>
     <ChangelogNotOpened>Failed to open a changelog file on web.</ChangelogNotOpened>
     <ChangelogNotLoaded>Failed to load changelog data. Please, contact support.</ChangelogNotLoaded>
     <ChangelogEmpty>Warning: changelog is empty. You are currently creating a new one.</ChangelogEmpty>
