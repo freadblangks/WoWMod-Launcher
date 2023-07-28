@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test");
             this.panelMain = new System.Windows.Forms.SplitContainer();
             this.panelLeftMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelBottomLeft = new System.Windows.Forms.TableLayoutPanel();
@@ -44,20 +45,18 @@
             this.newsPictureBox = new System.Windows.Forms.PictureBox();
             this.panelOutput = new System.Windows.Forms.GroupBox();
             this.output = new System.Windows.Forms.RichTextBox();
-            this.panelRight = new System.Windows.Forms.TableLayoutPanel();
-            this.changelogEditButt = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.webButt = new System.Windows.Forms.Button();
+            this.regButt = new System.Windows.Forms.Button();
             this.delBackButt = new System.Windows.Forms.Button();
             this.launcherInfoButt = new System.Windows.Forms.Button();
-            this.regButt = new System.Windows.Forms.Button();
+            this.panelTotalSize = new System.Windows.Forms.GroupBox();
+            this.totalSizeLabel = new System.Windows.Forms.Label();
+            this.launchButt = new System.Windows.Forms.Button();
             this.panelOptional = new System.Windows.Forms.GroupBox();
             this.optionalsListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.webButt = new System.Windows.Forms.Button();
-            this.launchButt = new System.Windows.Forms.Button();
-            this.changelogBrowserButt = new System.Windows.Forms.Button();
-            this.panelTotalSize = new System.Windows.Forms.GroupBox();
-            this.totalSizeLabel = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.panelRight = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
             this.panelMain.Panel1.SuspendLayout();
             this.panelMain.Panel2.SuspendLayout();
@@ -71,9 +70,9 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newsPictureBox)).BeginInit();
             this.panelOutput.SuspendLayout();
-            this.panelRight.SuspendLayout();
-            this.panelOptional.SuspendLayout();
             this.panelTotalSize.SuspendLayout();
+            this.panelOptional.SuspendLayout();
+            this.panelRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -90,8 +89,9 @@
             // panelMain.Panel2
             // 
             this.panelMain.Panel2.Controls.Add(this.panelRight);
+            this.panelMain.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Panel2_Paint);
             this.panelMain.Size = new System.Drawing.Size(884, 562);
-            this.panelMain.SplitterDistance = 659;
+            this.panelMain.SplitterDistance = 592;
             this.panelMain.TabIndex = 11;
             this.panelMain.TabStop = false;
             // 
@@ -110,7 +110,7 @@
             this.panelLeftMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelLeftMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.panelLeftMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.panelLeftMain.Size = new System.Drawing.Size(655, 558);
+            this.panelLeftMain.Size = new System.Drawing.Size(588, 558);
             this.panelLeftMain.TabIndex = 0;
             // 
             // panelBottomLeft
@@ -127,7 +127,7 @@
             this.panelBottomLeft.Name = "panelBottomLeft";
             this.panelBottomLeft.RowCount = 1;
             this.panelBottomLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelBottomLeft.Size = new System.Drawing.Size(647, 50);
+            this.panelBottomLeft.Size = new System.Drawing.Size(580, 50);
             this.panelBottomLeft.TabIndex = 3;
             // 
             // panelProgress
@@ -138,13 +138,13 @@
             this.panelProgress.Controls.Add(this.speedLabel, 0, 1);
             this.panelProgress.Controls.Add(this.progressLabel, 0, 0);
             this.panelProgress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelProgress.Location = new System.Drawing.Point(197, 3);
+            this.panelProgress.Location = new System.Drawing.Point(177, 3);
             this.panelProgress.Name = "panelProgress";
             this.panelProgress.RowCount = 3;
             this.panelProgress.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.panelProgress.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.panelProgress.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
-            this.panelProgress.Size = new System.Drawing.Size(252, 44);
+            this.panelProgress.Size = new System.Drawing.Size(226, 44);
             this.panelProgress.TabIndex = 1;
             // 
             // percentLabel
@@ -153,7 +153,7 @@
             this.percentLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.percentLabel.Location = new System.Drawing.Point(3, 28);
             this.percentLabel.Name = "percentLabel";
-            this.percentLabel.Size = new System.Drawing.Size(246, 16);
+            this.percentLabel.Size = new System.Drawing.Size(220, 16);
             this.percentLabel.TabIndex = 6;
             this.percentLabel.Text = "0% (0 MB downloaded, 0 MB remaining)";
             this.percentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -164,7 +164,7 @@
             this.speedLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.speedLabel.Location = new System.Drawing.Point(3, 14);
             this.speedLabel.Name = "speedLabel";
-            this.speedLabel.Size = new System.Drawing.Size(246, 14);
+            this.speedLabel.Size = new System.Drawing.Size(220, 14);
             this.speedLabel.TabIndex = 5;
             this.speedLabel.Text = "0 KB/s, 0 s remaining";
             this.speedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -174,7 +174,7 @@
             this.progressLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressLabel.Location = new System.Drawing.Point(3, 0);
             this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(246, 14);
+            this.progressLabel.Size = new System.Drawing.Size(220, 14);
             this.progressLabel.TabIndex = 3;
             this.progressLabel.Text = "Downloading: 0 / 0";
             this.progressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -182,9 +182,9 @@
             // updateButt
             // 
             this.updateButt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.updateButt.Location = new System.Drawing.Point(455, 3);
+            this.updateButt.Location = new System.Drawing.Point(409, 3);
             this.updateButt.Name = "updateButt";
-            this.updateButt.Size = new System.Drawing.Size(189, 44);
+            this.updateButt.Size = new System.Drawing.Size(168, 44);
             this.updateButt.TabIndex = 1;
             this.updateButt.Text = "Update";
             this.updateButt.UseVisualStyleBackColor = true;
@@ -195,7 +195,7 @@
             this.checkUpdatesButt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkUpdatesButt.Location = new System.Drawing.Point(3, 3);
             this.checkUpdatesButt.Name = "checkUpdatesButt";
-            this.checkUpdatesButt.Size = new System.Drawing.Size(188, 44);
+            this.checkUpdatesButt.Size = new System.Drawing.Size(168, 44);
             this.checkUpdatesButt.TabIndex = 0;
             this.checkUpdatesButt.Text = "Check for updates";
             this.checkUpdatesButt.UseVisualStyleBackColor = true;
@@ -207,7 +207,7 @@
             this.progressBar.Location = new System.Drawing.Point(7, 467);
             this.progressBar.Margin = new System.Windows.Forms.Padding(6, 3, 6, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(641, 30);
+            this.progressBar.Size = new System.Drawing.Size(574, 30);
             this.progressBar.TabIndex = 2;
             // 
             // splitContainer1
@@ -225,23 +225,22 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panelOutput);
-            this.splitContainer1.Size = new System.Drawing.Size(647, 456);
+            this.splitContainer1.Size = new System.Drawing.Size(580, 456);
             this.splitContainer1.SplitterDistance = 363;
             this.splitContainer1.TabIndex = 12;
             this.splitContainer1.TabStop = false;
             // 
             // newsPictureBox
             // 
-            this.newsPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.newsPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.newsPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("newsPictureBox.Image")));
             this.newsPictureBox.InitialImage = null;
             this.newsPictureBox.Location = new System.Drawing.Point(0, 0);
             this.newsPictureBox.Name = "newsPictureBox";
-            this.newsPictureBox.Size = new System.Drawing.Size(643, 359);
+            this.newsPictureBox.Size = new System.Drawing.Size(576, 359);
             this.newsPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.newsPictureBox.TabIndex = 0;
             this.newsPictureBox.TabStop = false;
-            this.newsPictureBox.Click += new System.EventHandler(this.newsPictureBox_Click);
             // 
             // panelOutput
             // 
@@ -249,7 +248,7 @@
             this.panelOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOutput.Location = new System.Drawing.Point(0, 0);
             this.panelOutput.Name = "panelOutput";
-            this.panelOutput.Size = new System.Drawing.Size(643, 85);
+            this.panelOutput.Size = new System.Drawing.Size(576, 85);
             this.panelOutput.TabIndex = 14;
             this.panelOutput.TabStop = false;
             this.panelOutput.Text = "Text output:";
@@ -260,58 +259,44 @@
             this.output.Dock = System.Windows.Forms.DockStyle.Fill;
             this.output.Location = new System.Drawing.Point(3, 16);
             this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(637, 66);
+            this.output.Size = new System.Drawing.Size(570, 66);
             this.output.TabIndex = 10;
             this.output.Text = "";
             this.output.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.output_LinkClicked);
             // 
-            // panelRight
+            // timer
             // 
-            this.panelRight.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.panelRight.ColumnCount = 1;
-            this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelRight.Controls.Add(this.changelogEditButt, 0, 6);
-            this.panelRight.Controls.Add(this.delBackButt, 0, 5);
-            this.panelRight.Controls.Add(this.launcherInfoButt, 0, 4);
-            this.panelRight.Controls.Add(this.regButt, 0, 3);
-            this.panelRight.Controls.Add(this.panelOptional, 0, 0);
-            this.panelRight.Controls.Add(this.webButt, 0, 2);
-            this.panelRight.Controls.Add(this.launchButt, 0, 8);
-            this.panelRight.Controls.Add(this.changelogBrowserButt, 0, 7);
-            this.panelRight.Controls.Add(this.panelTotalSize, 0, 1);
-            this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRight.Location = new System.Drawing.Point(0, 0);
-            this.panelRight.Name = "panelRight";
-            this.panelRight.RowCount = 9;
-            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.panelRight.Size = new System.Drawing.Size(217, 558);
-            this.panelRight.TabIndex = 0;
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // changelogEditButt
+            // webButt
             // 
-            this.changelogEditButt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changelogEditButt.Location = new System.Drawing.Point(4, 408);
-            this.changelogEditButt.Name = "changelogEditButt";
-            this.changelogEditButt.Size = new System.Drawing.Size(209, 24);
-            this.changelogEditButt.TabIndex = 8;
-            this.changelogEditButt.Text = "Changelog editor";
-            this.changelogEditButt.UseVisualStyleBackColor = true;
-            this.changelogEditButt.Click += new System.EventHandler(this.changelogEditButt_Click);
+            this.webButt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webButt.Location = new System.Drawing.Point(4, 346);
+            this.webButt.Name = "webButt";
+            this.webButt.Size = new System.Drawing.Size(276, 24);
+            this.webButt.TabIndex = 4;
+            this.webButt.Text = "Project webpage";
+            this.webButt.UseVisualStyleBackColor = true;
+            this.webButt.Click += new System.EventHandler(this.webButt_Click);
+            // 
+            // regButt
+            // 
+            this.regButt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.regButt.Location = new System.Drawing.Point(4, 377);
+            this.regButt.Name = "regButt";
+            this.regButt.Size = new System.Drawing.Size(276, 24);
+            this.regButt.TabIndex = 5;
+            this.regButt.Text = "Registration";
+            this.regButt.UseVisualStyleBackColor = true;
+            this.regButt.Click += new System.EventHandler(this.regButt_Click);
             // 
             // delBackButt
             // 
             this.delBackButt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.delBackButt.Location = new System.Drawing.Point(4, 377);
+            this.delBackButt.Location = new System.Drawing.Point(4, 408);
             this.delBackButt.Name = "delBackButt";
-            this.delBackButt.Size = new System.Drawing.Size(209, 24);
+            this.delBackButt.Size = new System.Drawing.Size(276, 24);
             this.delBackButt.TabIndex = 7;
             this.delBackButt.Text = "Delete .ext_ backups";
             this.delBackButt.UseVisualStyleBackColor = true;
@@ -320,24 +305,45 @@
             // launcherInfoButt
             // 
             this.launcherInfoButt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.launcherInfoButt.Location = new System.Drawing.Point(4, 346);
+            this.launcherInfoButt.Location = new System.Drawing.Point(4, 439);
             this.launcherInfoButt.Name = "launcherInfoButt";
-            this.launcherInfoButt.Size = new System.Drawing.Size(209, 24);
+            this.launcherInfoButt.Size = new System.Drawing.Size(276, 44);
             this.launcherInfoButt.TabIndex = 6;
             this.launcherInfoButt.Text = "Launcher manual";
             this.launcherInfoButt.UseVisualStyleBackColor = true;
             this.launcherInfoButt.Click += new System.EventHandler(this.launcherInfoButt_Click);
             // 
-            // regButt
+            // panelTotalSize
             // 
-            this.regButt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.regButt.Location = new System.Drawing.Point(4, 315);
-            this.regButt.Name = "regButt";
-            this.regButt.Size = new System.Drawing.Size(209, 24);
-            this.regButt.TabIndex = 5;
-            this.regButt.Text = "Registration";
-            this.regButt.UseVisualStyleBackColor = true;
-            this.regButt.Click += new System.EventHandler(this.regButt_Click);
+            this.panelTotalSize.Controls.Add(this.totalSizeLabel);
+            this.panelTotalSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTotalSize.Location = new System.Drawing.Point(4, 284);
+            this.panelTotalSize.Name = "panelTotalSize";
+            this.panelTotalSize.Size = new System.Drawing.Size(276, 55);
+            this.panelTotalSize.TabIndex = 13;
+            this.panelTotalSize.TabStop = false;
+            this.panelTotalSize.Text = "Total size of outdated:";
+            // 
+            // totalSizeLabel
+            // 
+            this.totalSizeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalSizeLabel.Location = new System.Drawing.Point(3, 16);
+            this.totalSizeLabel.Name = "totalSizeLabel";
+            this.totalSizeLabel.Size = new System.Drawing.Size(270, 36);
+            this.totalSizeLabel.TabIndex = 10;
+            this.totalSizeLabel.Text = "Chosen optionals: \r\nNon-optionals: ";
+            this.totalSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // launchButt
+            // 
+            this.launchButt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.launchButt.Location = new System.Drawing.Point(4, 490);
+            this.launchButt.Name = "launchButt";
+            this.launchButt.Size = new System.Drawing.Size(276, 64);
+            this.launchButt.TabIndex = 3;
+            this.launchButt.Text = "Launch";
+            this.launchButt.UseVisualStyleBackColor = true;
+            this.launchButt.Click += new System.EventHandler(this.launchButt_Click);
             // 
             // panelOptional
             // 
@@ -345,7 +351,7 @@
             this.panelOptional.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOptional.Location = new System.Drawing.Point(4, 4);
             this.panelOptional.Name = "panelOptional";
-            this.panelOptional.Size = new System.Drawing.Size(209, 212);
+            this.panelOptional.Size = new System.Drawing.Size(276, 273);
             this.panelOptional.TabIndex = 15;
             this.panelOptional.TabStop = false;
             this.panelOptional.Text = "Optional files:";
@@ -358,15 +364,16 @@
             this.optionalsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.optionalsListView.FullRowSelect = true;
             this.optionalsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            listViewItem1.StateImageIndex = 0;
-            listViewItem1.ToolTipText = "!!!";
+            this.optionalsListView.HideSelection = false;
+            listViewItem2.StateImageIndex = 0;
+            listViewItem2.ToolTipText = "!!!";
             this.optionalsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.optionalsListView.Location = new System.Drawing.Point(3, 16);
             this.optionalsListView.MultiSelect = false;
             this.optionalsListView.Name = "optionalsListView";
             this.optionalsListView.ShowItemToolTips = true;
-            this.optionalsListView.Size = new System.Drawing.Size(203, 193);
+            this.optionalsListView.Size = new System.Drawing.Size(270, 254);
             this.optionalsListView.TabIndex = 10;
             this.optionalsListView.UseCompatibleStateImageBehavior = false;
             this.optionalsListView.View = System.Windows.Forms.View.List;
@@ -378,64 +385,31 @@
             this.columnHeader1.Text = "Name";
             this.columnHeader1.Width = 1000;
             // 
-            // webButt
+            // panelRight
             // 
-            this.webButt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webButt.Location = new System.Drawing.Point(4, 284);
-            this.webButt.Name = "webButt";
-            this.webButt.Size = new System.Drawing.Size(209, 24);
-            this.webButt.TabIndex = 4;
-            this.webButt.Text = "Project webpage";
-            this.webButt.UseVisualStyleBackColor = true;
-            this.webButt.Click += new System.EventHandler(this.webButt_Click);
-            // 
-            // launchButt
-            // 
-            this.launchButt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.launchButt.Location = new System.Drawing.Point(4, 490);
-            this.launchButt.Name = "launchButt";
-            this.launchButt.Size = new System.Drawing.Size(209, 64);
-            this.launchButt.TabIndex = 3;
-            this.launchButt.Text = "Launch";
-            this.launchButt.UseVisualStyleBackColor = true;
-            this.launchButt.Click += new System.EventHandler(this.launchButt_Click);
-            // 
-            // changelogBrowserButt
-            // 
-            this.changelogBrowserButt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changelogBrowserButt.Location = new System.Drawing.Point(4, 439);
-            this.changelogBrowserButt.Name = "changelogBrowserButt";
-            this.changelogBrowserButt.Size = new System.Drawing.Size(209, 44);
-            this.changelogBrowserButt.TabIndex = 9;
-            this.changelogBrowserButt.Text = "Changelog browser";
-            this.changelogBrowserButt.UseVisualStyleBackColor = true;
-            this.changelogBrowserButt.Click += new System.EventHandler(this.changelogBrowserButt_Click);
-            // 
-            // panelTotalSize
-            // 
-            this.panelTotalSize.Controls.Add(this.totalSizeLabel);
-            this.panelTotalSize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTotalSize.Location = new System.Drawing.Point(4, 223);
-            this.panelTotalSize.Name = "panelTotalSize";
-            this.panelTotalSize.Size = new System.Drawing.Size(209, 54);
-            this.panelTotalSize.TabIndex = 13;
-            this.panelTotalSize.TabStop = false;
-            this.panelTotalSize.Text = "Total size of outdated:";
-            // 
-            // totalSizeLabel
-            // 
-            this.totalSizeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.totalSizeLabel.Location = new System.Drawing.Point(3, 16);
-            this.totalSizeLabel.Name = "totalSizeLabel";
-            this.totalSizeLabel.Size = new System.Drawing.Size(203, 35);
-            this.totalSizeLabel.TabIndex = 10;
-            this.totalSizeLabel.Text = "Chosen optionals: \r\nNon-optionals: ";
-            this.totalSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // timer
-            // 
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            this.panelRight.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.panelRight.ColumnCount = 1;
+            this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelRight.Controls.Add(this.panelOptional, 0, 0);
+            this.panelRight.Controls.Add(this.launchButt, 0, 6);
+            this.panelRight.Controls.Add(this.panelTotalSize, 0, 1);
+            this.panelRight.Controls.Add(this.launcherInfoButt, 0, 5);
+            this.panelRight.Controls.Add(this.delBackButt, 0, 4);
+            this.panelRight.Controls.Add(this.regButt, 0, 3);
+            this.panelRight.Controls.Add(this.webButt, 0, 2);
+            this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRight.Location = new System.Drawing.Point(0, 0);
+            this.panelRight.Name = "panelRight";
+            this.panelRight.RowCount = 7;
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.panelRight.Size = new System.Drawing.Size(284, 558);
+            this.panelRight.TabIndex = 0;
             // 
             // MainWindow
             // 
@@ -461,9 +435,9 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.newsPictureBox)).EndInit();
             this.panelOutput.ResumeLayout(false);
-            this.panelRight.ResumeLayout(false);
-            this.panelOptional.ResumeLayout(false);
             this.panelTotalSize.ResumeLayout(false);
+            this.panelOptional.ResumeLayout(false);
+            this.panelRight.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -482,22 +456,20 @@
         private System.Windows.Forms.Label progressLabel;
         private System.Windows.Forms.Button updateButt;
         private System.Windows.Forms.Button checkUpdatesButt;
-        private System.Windows.Forms.TableLayoutPanel panelRight;
-        private System.Windows.Forms.Button changelogBrowserButt;
-        private System.Windows.Forms.Button delBackButt;
-        private System.Windows.Forms.Button launcherInfoButt;
-        private System.Windows.Forms.Button regButt;
-        private System.Windows.Forms.GroupBox panelOptional;
-        private System.Windows.Forms.Button webButt;
-        private System.Windows.Forms.Button launchButt;
-        private System.Windows.Forms.Button changelogEditButt;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.ListView optionalsListView;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.Label totalSizeLabel;
-        private System.Windows.Forms.GroupBox panelTotalSize;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.PictureBox newsPictureBox;
+        private System.Windows.Forms.TableLayoutPanel panelRight;
+        private System.Windows.Forms.GroupBox panelOptional;
+        private System.Windows.Forms.ListView optionalsListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Button launchButt;
+        private System.Windows.Forms.GroupBox panelTotalSize;
+        private System.Windows.Forms.Label totalSizeLabel;
+        private System.Windows.Forms.Button launcherInfoButt;
+        private System.Windows.Forms.Button delBackButt;
+        private System.Windows.Forms.Button regButt;
+        private System.Windows.Forms.Button webButt;
     }
 }
 

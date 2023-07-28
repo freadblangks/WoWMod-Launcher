@@ -46,8 +46,8 @@ namespace AmarothLauncher
             regButt.Text = c.SubElText("MainWindow", "RegistrationButton");
             launcherInfoButt.Text = c.SubElText("MainWindow", "LauncherInstructionsButton");
             delBackButt.Text = c.SubElText("MainWindow", "DeleteBackupsButton");
-            changelogEditButt.Text = c.SubElText("MainWindow", "ChangelogEditorButton");
-            changelogBrowserButt.Text = c.SubElText("MainWindow", "ChangelogBrowserButton");
+            // changelogEditButt.Text = c.SubElText("MainWindow", "ChangelogEditorButton");
+            // changelogBrowserButt.Text = c.SubElText("MainWindow", "ChangelogBrowserButton");
             launchButt.Text = c.SubElText("MainWindow", "LaunchButton");
             panelTotalSize.Text = c.SubElText("MainWindow", "PanelTotalSize");
             try { newsPictureBox.LoadAsync(c.SubElText("Paths", "HelloImage")); }
@@ -402,7 +402,7 @@ namespace AmarothLauncher
 
         private void newsPictureBox_Click(object sender, EventArgs e)
         {
-            changelogBrowserButt_Click(null, null);
+            // changelogBrowserButt_Click(null, null);
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -416,5 +416,10 @@ namespace AmarothLauncher
             // c.OutputContent();
         }
         #endregion
+
+        private void panelMain_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
